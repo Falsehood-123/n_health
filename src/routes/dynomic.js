@@ -3,7 +3,7 @@ const Dynomic = require('../mongoose/dynomic.js')
 const md5 = require('blueimp-md5')
 const router = express.Router()
 
-// 发布菜谱
+// 发布动态
 router.post('/dynomic',(req,res) => {
     // 获取数据
     // 操作数据库
@@ -18,6 +18,10 @@ router.post('/dynomic',(req,res) => {
         }
         res.send(data)
     }) 
+})
+
+router.post('/dynomic/img',(req,res) => {
+    res.sendStatus(200)
 })
 
 

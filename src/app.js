@@ -11,9 +11,14 @@ const dynomicRouter = require('./routes/dynomic')
 // 创建 express 实例
 const app = express()
 
-// 配置 bodyParse 
-const jsonParser = bodyParser.json()
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+// 配置 bodyParse
+const jsonParser = bodyParser.json({ limit: '10000kb' }) //最大上传不超过10000kb
+const urlencodedParser = bodyParser.urlencoded({
+    limit: '10000kb',
+    extended: true,
+    parameterLimit:50000
+})
+// 最后的parameterLimit得加上，不然没效果
 
 app.all("*",function(req,res,next){
     //设置允许跨域的域名，*代表允许任意域名跨域

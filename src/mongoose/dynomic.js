@@ -20,7 +20,11 @@ const dynomicSchema = new Schema({
         type: String,
         default: ''
     },
-    imames: {
+    userName: {
+        type: String,
+        default: ''
+    },
+    imageBase: {
         type:Array,
         default: []
     },

@@ -28,7 +28,10 @@ const recipeSchema = new Schema({
     // 步骤
     step: {
         type: Array,
-        default: [{imageUrl:'',des:''}]
+        default: [{
+            imageUrl:'',
+            des:''
+        }]
     },
     // 小提示
     tip: {
@@ -37,6 +40,10 @@ const recipeSchema = new Schema({
     },
     // 用户id
     userId: {
+        type: String,
+        default: ''
+    },
+    userName: {
         type: String,
         default: ''
     },

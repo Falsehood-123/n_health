@@ -4,6 +4,17 @@ const md5 = require('blueimp-md5')
 
 const router = express.Router()
 
+// 每次刷新时的请求
+router.post('/check', (req,res) => {
+    let {id} = req.body
+    User.findById(id,(err,data) => {
+        if(err) {
+            return res.sendStatus(500).send('error')
+        }
+        res.send(data)
+    })
+})
+// 登录请求
 router.post('/login', (req,res) => {
     User.findOneAndUpdate({
         phone:req.body.phone,
@@ -20,6 +31,7 @@ router.post('/login', (req,res) => {
         }
     })
 })
+// 退出请求
 router.get('/logout', (req,res) => {
     let {id} = req.query
     User.findOneAndUpdate({_id:id},{loginType:false},(err,data) => {
@@ -35,6 +47,7 @@ router.get('/logout', (req,res) => {
         }
     })
 })
+// 注册请求
 router.post('/register', (req,res) => {
     // 获取数据
     // 操作数据库
@@ -58,7 +71,6 @@ router.post('/register', (req,res) => {
                     message:'server error'
                 })
             }
-            req.session.user = user
             res.send(user)
         }) 
     })
